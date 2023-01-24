@@ -1,0 +1,23 @@
+﻿@page "/bingmap"
+<h3>BingsMap Demo</h3>
+
+<SfMaps>
+    @* To zoom and pan *@
+    <MapsZoomSettings Enable="true">
+        <MapsZoomToolbarSettings>
+            <MapsZoomToolbarButton ToolbarItems="new List<ToolbarItem>() { ToolbarItem.Zoom, ToolbarItem.ZoomIn, ToolbarItem.ZoomOut,
+            ToolbarItem.Pan, ToolbarItem.Reset }"></MapsZoomToolbarButton>
+        </MapsZoomToolbarSettings>
+    </MapsZoomSettings>
+    <MapsLayers>
+        <MapsLayer UrlTemplate="@UrlTemplate" TValue="string"></MapsLayer>
+    </MapsLayers>
+</SfMaps>
+
+@code {
+    public string UrlTemplate;
+    protected override async Task OnInitializedAsync()
+    {
+        UrlTemplate = await SfMaps.GetBingUrlTemplate("https://dev.virtualearth.net/REST/V1/Imagery/Metadata/RoadOnDemand?output=json&uriScheme=https&key=ApQC_R8u_qeAUUKo-2oHNl3AvqjHuSQ2RRWxzAX_YmaaITfjSXI0s38SeUldfZtD");
+    }
+}
